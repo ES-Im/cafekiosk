@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import sample.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
+import sample.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import sample.cafekiosk.spring.api.service.order.response.OrderResponse;
 import sample.cafekiosk.spring.domain.order.OrderRepository;
 import sample.cafekiosk.spring.domain.orderProduct.OrderProductRepository;
@@ -184,22 +185,19 @@ class OrderServiceTest {
         Product product3 = createProduct(HANDMADE, "003", 5000);
         productRepository.saveAll(List.of(product1, product2, product3));
 
-        Stock stock1 = Stock.create("001", 0);
+        Stock stock1 = Stock.create("001", 2);
         Stock stock2 = Stock.create("002", 2);
-        Stock stock3 = Stock.create("003", 2);
-        stockRepository.saveAll(List.of(stock1, stock2, stock3));
+        stock1.deductQuantity(1); // todo
+        stockRepository.saveAll(List.of(stock1, stock2));
 
-        OrderCreateRequest request = OrderCreateRequest.builder()
+        OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
                 .productNumbers(List.of("001", "001", "002", "003"))
                 .build();
 
-
-
         // when // then
-
-         assertThatThrownBy(() -> orderService.createOrder(request.toOrderCreateServiceRequest(), registeredDateTime))
-                 .isInstanceOf(IllegalArgumentException.class)
-                 .hasMessage("재고가 부족한 상품이 있습니다.");
+        assertThatThrownBy(() -> orderService.createOrder(request, registeredDateTime))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("재고가 부족한 상품이 있습니다.");
 
 
     }
