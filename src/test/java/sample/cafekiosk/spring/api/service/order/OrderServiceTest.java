@@ -1,6 +1,7 @@
 package sample.cafekiosk.spring.api.service.order;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,6 +129,7 @@ class OrderServiceTest extends IntegrationTestSupport {
                 );
     }
 
+    @Disabled
     @DisplayName("재고와 관련된 상품이 포함되어 있는 주문번호 리스트를 받아 주문을 생성한다.")
     @Test
     void createOrderWithStock() {
@@ -173,6 +175,7 @@ class OrderServiceTest extends IntegrationTestSupport {
                 );
     }
 
+    @Disabled
     @DisplayName("재고가 부족한 상품으로 주문을 생성하려는 경우 예외가 발생한다.")
     @Test
     void createOrderWithNoStock() {

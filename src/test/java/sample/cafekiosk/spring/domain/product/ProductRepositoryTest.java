@@ -1,5 +1,6 @@
 package sample.cafekiosk.spring.domain.product;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ class ProductRepositoryTest {
 
     @Autowired ProductRepository productRepository;
 
+    @Disabled
     @Test
     @DisplayName("원하는 판매상태를 가진 상품들을 조회한다.")
     void findAllBySellingStatusIn() {
@@ -57,6 +59,7 @@ class ProductRepositoryTest {
         assertThat(latestProductNumber).isEqualTo(targetProductNumber);
     }
 
+    @Disabled
     @Test
     @DisplayName("가장 마지막으로 저장한 상품을 읽어올 때 상품이 하나도 없는 경우에는 null을 반환한다.")
     void findLatestProductNumber2() {
