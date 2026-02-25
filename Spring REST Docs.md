@@ -36,7 +36,7 @@ API를 설계할 때 프론트엔드 개발자가 함께 있다고 가정하면,
 ---
 ### 1. build.gradle 설정  
 ※ [Asciidoctor](asciidoctor.org) : AsciiDoc ↔ HTML 파일로 변환 
-* ① 플러그인 : `id 'org.asciidoctor.jvm.convert' version '4.0.2'`(Asciidoctor에 대한 플러그인 추가)
+* ① 플러그인 : `id 'org.asciidoctor.jvm.convert' version '4.0.2'`(Asciidoctor에 대한 플러그인 추가 - 최신버전 확인(['https://plugins.gradle.org/search?term=org.asciidoctor.jvm.convert']))
 * ② configurations : `asciidoctorExt` 추가 (Asciidoctor extension에 대한 컴플리케이션 넣어준다)
 * ③ dependencies :
     ```
